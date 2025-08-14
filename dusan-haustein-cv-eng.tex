@@ -1,4 +1,4 @@
-\documentclass[10pt, letterpaper]{article}
+\documentclass[10pt, a4paper]{article}
 
 % Packages:
 \usepackage[
@@ -15,15 +15,16 @@
 \usepackage{array} % tabularx requires this
 \usepackage[dvipsnames]{xcolor} % for coloring text
 \definecolor{primaryColor}{RGB}{0, 0, 0} % define primary color
+\definecolor{linkColor}{RGB}{0, 51, 180} % define dark blue color for links
 \usepackage{enumitem} % for customizing lists
 \usepackage{fontawesome5} % for using icons
 \usepackage{amsmath} % for math
 \usepackage[
-    pdftitle={John Doe's CV},
-    pdfauthor={John Doe},
-    pdfcreator={LaTeX with RenderCV},
+    pdftitle={Dusan Haustein's CV},
+    pdfauthor={Dusan Haustein},
+    pdfcreator={LaTeX},
     colorlinks=true,
-    urlcolor=primaryColor
+    urlcolor=linkColor
 ]{hyperref} % for links, metadata and bookmarks
 \usepackage[pscoord]{eso-pic} % for floating text on the page
 \usepackage{calc} % for calculating lengths
@@ -149,16 +150,11 @@
 \let\hrefWithoutArrow\href
 
 % new command for external links:
-
+\newcommand{\AND}{$|$}
+\newsavebox\ANDbox
+\sbox\ANDbox{$|$}
 
 \begin{document}
-    \newcommand{\AND}{\unskip
-        \cleaders\copy\ANDbox\hskip\wd\ANDbox
-        \ignorespaces
-    }
-    \newsavebox\ANDbox
-    \sbox\ANDbox{$|$}
-
     \begin{header}
         \fontsize{25 pt}{25 pt}\selectfont Dusan Haustein
 
@@ -168,14 +164,12 @@
         \mbox{Czech Republic}%
         \kern 5.0 pt%
 
-        \AND%
-        \kern 5.0 pt%
-        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/dusanhaustein/}{linkedin.com/in/dusanhaustein/}}%
-        \kern 5.0 pt%
-
-        \AND%
-        \kern 5.0 pt%
+        % \AND%
+        % \kern 5.0 pt%
+        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/dusanhaustein/}{linkedin.com/in/dusanhaustein/}}
+        \hspace{35.0 pt}%
         \mbox{\hrefWithoutArrow{https://github.com/dhaustein}{github.com/dhaustein}}%
+        \kern 5.0 pt%
 
     \end{header}
 
@@ -185,13 +179,13 @@
     \section{Summary}
 
         \begin{onecolentry}
-            Software quality engineer with 9 years of experience in testing, test automation, and CI/CD implementation.
-
-            I have worked with teams both small and large, including experience managing a remote team of 5 test automation engineers.
-
-            I am most skilled in Python, Linux, virtualization, containerization, CI/CD, test automation, and Kubernetes, and I enjoy mentoring others.
-
-            For more details and references, please see my LinkedIn profile (linked above).
+            Software quality engineer with 9 years of experience in testing, test automation, and CI/CD implementation.\\
+            \vspace{0.10 cm}
+            I have worked with teams both small and large, including experience managing a remote team of 5 test automation engineers.\\
+            \vspace{0.10 cm}
+            I am most skilled in Python, Linux, virtualization, containerization, CI/CD, test automation, and Kubernetes, and I enjoy mentoring others.\\
+            \vspace{0.10 cm}
+            For more details and references, please see my LinkedIn profile (linked above).\\
         \end{onecolentry}
 
         \vspace{0.2 cm}
@@ -203,7 +197,7 @@
 
         % Latest
         \begin{twocolentry}{
-            June 2025 - Present
+            \small\mbox{June 2025 - Present}
         }
             \textbf{Principal QA Engineer}, Freelance, Remote\end{twocolentry}
 
@@ -220,11 +214,11 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.5 cm}
 
         % Red Hat
         \begin{twocolentry}{
-            November 2023 - May 2025
+            \small\mbox{November 2023 - May 2025}
         }
             \textbf{Senior Software Quality Engineer}, Red Hat, Full-time, Remote\end{twocolentry}
 
@@ -240,11 +234,11 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.5 cm}
 
         % Manta
         \begin{twocolentry}{
-            January 2023 - October 2023
+            \small\mbox{January 2023 - October 2023}
         }
             \textbf{Test Automation Lead}, MANTA, Full-time, Hybrid\end{twocolentry}
 
@@ -260,11 +254,11 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.5 cm}
 
         % Manta
         \begin{twocolentry}{
-            October 2021 - January 2023
+            \small\mbox{October 2021 - January 2023}
         }
             \textbf{Senior Test Automation Engineer}, MANTA, Full-time, Hybrid\end{twocolentry}
 
@@ -283,11 +277,11 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.5 cm}
 
         % PeoplePath
         \begin{twocolentry}{
-            October 2020 - September 2021
+            \small\mbox{October 2020 - September 2021}
         }
             \textbf{Business Analyst}, PeoplePath, Full-time, Hybrid\end{twocolentry}
 
@@ -301,11 +295,11 @@
             \end{highlights}
         \end{onecolentry}
 
-        \vspace{0.2 cm}
+        \vspace{0.5 cm}
 
         % PeoplePath
         \begin{twocolentry}{
-            September 2016 - September 2020
+            \small\mbox{September 2016 - September 2020}
         }
             \textbf{QA Engineer}, PeoplePath, Full-time, On-site\end{twocolentry}
 
@@ -319,6 +313,8 @@
                 \item Tech stack: Jenkins CI, Docker, PHP, Behat, Cucumber/Gherkin, Selenium, Python
             \end{highlights}
         \end{onecolentry}
+
+    \vspace{0.2 cm}
 
     \section{Education}
 
@@ -336,12 +332,14 @@
         }
             \textbf{University of West Bohemia}, Bachelor's degree, Linguistics\end{twocolentry}
 
+    \vspace{0.2 cm}
+
     \section{Courses \& Certifications}
 
         \begin{twocolentry}{
             Jan 2025
         }
-            \textbf{Various Django and Python development courses (see LinkedIn profile)}
+            \textbf{Various Django and Python development courses}, see \hrefWithoutArrow{https://www.linkedin.com/in/dusanhaustein/details/certifications/}{LinkedIn profile for details}
         \end{twocolentry}
 
         \vspace{0.10 cm}
@@ -355,7 +353,7 @@
         \vspace{0.10 cm}
 
         \begin{twocolentry}{
-
+            2015
         }
             \textbf{Cambridge - Certificate of Proficiency in English (CPE) Level C2}
         \end{twocolentry}

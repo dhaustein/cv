@@ -35,6 +35,7 @@
 \usepackage{ifthen} % for conditional statements
 \usepackage{needspace} % for avoiding page brake right after the section title
 \usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+\usepackage{ragged2e} % for justifying text
 
 % Ensure that generate pdf is machine readable/ATS parsable:
 \ifPDFTeX
@@ -73,8 +74,8 @@
 \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
 \newenvironment{highlights}{
     \begin{itemize}[
-        topsep=0.10 cm,
-        parsep=0.10 cm,
+        topsep=0.05 cm,
+        parsep=0.05 cm,
         partopsep=0pt,
         itemsep=0pt,
         leftmargin=0 cm + 10pt
@@ -179,13 +180,13 @@
     \section{Summary}
 
         \begin{onecolentry}
-            Software quality engineer with 9 years of experience in testing, test automation, and CI/CD implementation.\\
-            \vspace{0.10 cm}
-            I have worked with teams both small and large, including experience managing a remote team of 5 test automation engineers.\\
-            \vspace{0.10 cm}
-            I am most skilled in Python, Linux, virtualization, containerization, CI/CD, test automation, and Kubernetes, and I enjoy mentoring others.\\
-            \vspace{0.10 cm}
-            For more details and references, please see my LinkedIn profile (linked above).\\
+            \justifying
+            Software quality engineer with 9 years of experience designing and delivering scalable, future-proof QA automation and testing processes.
+            I specialize in QA team mentoring and leadership, test automation framework design, CI/CD implementation, and test strategy development.
+            I have led distributed agile teams and worked on everything from greenfield startup projects to large enterprise platforms.
+            I bring overlap with cloud technologies, proficiency with containerization and Kubernetes, and hands-on experience leading remote teams of engineers.
+            I've contributed automated testing suites for data intelligence systems, Red Hat Ansible, or embedded systems.
+            For more details and references, please see my LinkedIn profile (linked above).
         \end{onecolentry}
 
         \vspace{0.2 cm}

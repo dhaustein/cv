@@ -17,10 +17,25 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Cache chktex package
+      uses: actions/cache@v4
+      id: cache-chktex
+      with:
+        path: /var/cache/apt/archives
+        key: ${{ runner.os }}-apt-chktex
+
+    # run chtex but ignore warnings
+    - name: Lint LaTeX doc
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chktex
+        chktex --quiet --nowarn all dusan-haustein-cv-eng.tex
+
     - name: Compile LaTeX document
       uses: xu-cheng/latex-action@v3
       with:
         root_file: dusan-haustein-cv-eng.tex
+        use_cache: true
 
     - name: Upload PDF artifact
       uses: actions/upload-artifact@v4

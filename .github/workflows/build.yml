@@ -2,9 +2,10 @@ name: Build CV
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+    types: [labeled, unlabeled]
 
 permissions:
   contents: write
@@ -14,48 +15,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Cache chktex package
-      uses: actions/cache@v4
-      id: cache-chktex
-      with:
-        path: /var/cache/apt/archives
-        key: ${{ runner.os }}-apt-chktex
+      - name: Cache chktex package
+        uses: actions/cache@v4
+        id: cache-chktex
+        with:
+          path: /var/cache/apt/archives
+          key: ${{ runner.os }}-apt-chktex
 
-    # run chtex but ignore warnings
-    - name: Lint LaTeX doc
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chktex
-        chktex --quiet --nowarn all dusan-haustein-cv-eng.tex
+      # run chtex but ignore warnings
+      - name: Lint LaTeX doc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chktex
+          chktex --quiet --nowarn all dusan-haustein-cv-eng.tex
 
-    - name: Compile LaTeX document
-      uses: xu-cheng/latex-action@v3
-      with:
-        root_file: dusan-haustein-cv-eng.tex
-        use_cache: true
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: dusan-haustein-cv-eng.tex
+          use_cache: true
 
-    - name: Upload PDF artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: dusan-haustein-cv-eng
-        path: dusan-haustein-cv-eng.pdf
-        retention-days: 90
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dusan-haustein-cv-eng
+          path: dusan-haustein-cv-eng.pdf
+          retention-days: 90
 
-    - name: Create Release
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: dusan-haustein-cv-eng-latest
-        name: Latest CV
-        body: |
-          Automatically generated CV from the latest commit.
+      - name: Create Release on push to main
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: dusan-haustein-cv-eng-latest
+          name: Latest CV
+          body: |
+            Automatically generated CV from the latest commit.
 
-          **Commit:** ${{ github.sha }}
-          **Date:** ${{ github.event.head_commit.timestamp }}
-        files: dusan-haustein-cv-eng.pdf
-        prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            **Commit:** ${{ github.sha }}
+            **Date:** ${{ github.event.head_commit.timestamp }}
+          files: dusan-haustein-cv-eng.pdf
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
